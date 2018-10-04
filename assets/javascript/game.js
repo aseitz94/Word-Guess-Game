@@ -25,31 +25,45 @@ var characterNames = [
 "maka albarn",
 ];
 
-var score = 0;
-var wordindex = 0;
+var counter;
+var wrong;
+var correct;
+var wordElement = document.getElementById('word');
+
+var letterCountElement = document.getElementById("guesses")
+var lettersGuessedElement = document.getElementById("guesses")
+
 
 //Random Word
 
-var randomWord = function() {
-    return [Math.floor(math.random()* characterNames.length)]
-}
+var randomWord = characterNames[Math.floor(Math.random()* characterNames.length)]
 
-var chosenWord = randomWord(characterNames);
-console.log(chosenWord)
+
 
   
 //Function to render word
-var underscore = chosenWord.replace(/./g, "_");
+function startGame(){
+    counter = 20;
+    wrong = [];
+    correct = [];
 
-"word".textcontent = underscore;
+    for (let i = 0; i < (randomWord.length); i++){
+        correct.push('_');
+    }
+}
+ console.log(randomWord)
+
+ 
 
 //Use key events to listen for the letters that your players will type.
 document.onkeyup = function(event) {
 
     var chosenLetter = event.key.toLowerCase();
 
-    
-}
+  
+
+    }
+
 
 //one letter
  
