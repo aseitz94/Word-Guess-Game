@@ -42,28 +42,50 @@ var randomWord = characterNames[Math.floor(Math.random()* characterNames.length)
 
   
 //Function to render word
-function startGame(){
-    counter = 20;
-    wrong = [];
-    correct = [];
 
-    for (let i = 0; i < (randomWord.length); i++){
-        correct.push('_');
+  
+    var answer = []
+    for (let i = 0; i < randomWord.length; i++){
+      answer[i] = "_";
     }
-}
- console.log(randomWord)
 
+ console.log(randomWord)
+ 
+ wordElement.append(answer)
  
 
 //Use key events to listen for the letters that your players will type.
 document.onkeyup = function(event) {
 
+    
     var chosenLetter = event.key.toLowerCase();
+    console.log(chosenLetter)
 
-  
+    console.log(randomWord.indexOf())
 
+   // if (chosenLetter === answer[x]) {
+       // for (var x = 0; x < randomWord.length; x++){
+         //   if (randomWord[x] === chosenLetter){
+           //     answer[x] = chosenLetter;
+      //      }
+    //    }
+  //  }
+
+    //else(counter <= 0 ); {
+       
+        //location.reload(true)
+   // 
+;
     }
+ 
 
+    //Texts//
+   //document.getElementById("#word").textContent = randomWord;
+  // wordElement.textContent = answer;
+
+
+
+   
 
 //one letter
  
@@ -79,16 +101,8 @@ document.onkeyup = function(event) {
 
    //As the user guesses the correct letters, reveal them: `m a d o _  _ a`.
 
-    //Number of Guesses Remaining: (# of guesses remaining for the user).
-  
-    /* function charCount(){
-    var counter = (20 - (userInput.length));
-    var attemptChar = 
-    var correctChar = [];*/
-
+    //Number of Guesses Remaining: (# of guesses remaining for the user)
     
-
-
     //Letters Already Guessed: (Letters the user has guessed, displayed like `L Z Y H`).
 
     //After the user wins/loses the game should automatically choose another word and make the user play it
