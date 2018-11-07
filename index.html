@@ -17,14 +17,14 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
         crossorigin="anonymous"></script>
     <!--My Javascript link-->
-    
+
 </head>
 
 <body>
 
     <div class="row">
         <div class="col-12">
-    <h1>Anime Character Word Game</h1>
+            <h1>Anime Character Word Game</h1>
         </div>
     </div>
 
@@ -32,14 +32,24 @@
     <div>
         <p>Press any key to begin</p>
     </div>
+    <!--score div-->
+    <div id="score"></div>
 
+    <!--Word div-->
+    <div id="word">_ _ _ _ _</div>
+    <!--Guesses div-->
     <div>
-        <p id="score"></p>
-        <p id="word"></p>
-        <P id="guesses"></P>
+        <strong>Wrong Guesses: </strong>
+        <span id="guesses"></span>
+    </div>
+    <!--Counter div-->
+    <div>
+       <strong> Guesses Left : </strong>
+       <span id ="guess-counter"></span>
     </div>
 
-    <script type="text/javascript"  src="assets/javascript/game.js"></script>
+
+    <script type="text/javascript" src="assets/javascript/game.js"></script>
 
 </body>
 
