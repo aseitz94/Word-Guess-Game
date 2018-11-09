@@ -24,39 +24,45 @@ var characterNames = [
     "soul eater",
     "maka albarn",
 ];
-
+//Number Variables
 var guessCounter = 15;
 var wrongGuessCounter = 0;
-var correctGuessCounter = 0;
+var winCounter = 0;
+var blanks = 0;
 
+
+
+//Array Variables
+var answerBlanks = [];
+var wrongGuess = [];
+var randomWord = "";
+var lettersInRandomWord = [];
+
+//HTML Variables
 var wordElement = document.getElementById('word');
 var letterCountElement = document.getElementById("guess-counter")
 var lettersGuessedElement = document.getElementById("guesses")
 
-var answer = [];
-var wrongGuess = [];
-var randomWord = "";
-var lettersInRandomWord = [];
-var blanks = 0;
+
 function start() {
     //Game counter 
     guessCounter = 15;
     //Random Word
-    var randomWord = characterNames[Math.floor(Math.random() * characterNames.length)];
+    randomWord = characterNames[Math.floor(Math.random() * characterNames.length)];
     lettersInRandomWord = randomWord.split("");
     blanks = lettersInRandomWord.length;
 
     //Function to render word blanks
-    var answer = []
+        answerblanks = []
     for (let i = 0; i < randomWord.length; i++) {
-        answer[i] = "_";
+        answerBlanks[i] = "_";
     }
     console.log(randomWord);
     //guess start empty
     wrongGuess = [];
     //renders html 
-    wordElement.innerHTML = answer.join(" ");
-    lettersGuessedElement = wrongGuess.join(" ");
+    wordElement.innerHTML = answerBlanks.join(" ");
+    lettersGuessedElement.innerHTML = wrongGuess.join(" ");
     letterCountElement.innerHTML = guessCounter;
 }
 start()
@@ -67,16 +73,18 @@ function guessCheck(letter) {
     letterInRandomWord = false;
 
     //if letter is in word replace letter into word
-    for (var i = 0; blanks.length; i++) {
+    for (var i = 0; i < blanks; i++) {
         if (randomWord[i] === letter) {
-            lettersInRandomWord = true;
+            letterInRandomWord = true;
         }
     }
 
-    if (lettersInRandomWord) {
+    if (letterInRandomWord) {
         for (var j = 0; j < blanks; j++) {
             if (randomWord[j] === letter) {
-                answer[j] = letter;
+                answerBlanks[j] = letter;
+                wordElement.innerHTML = answerBlanks;
+                console.log("correct: " + answerBlanks)
             }
         }
 
