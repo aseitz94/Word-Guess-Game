@@ -28,6 +28,7 @@ var characterNames = [
 var guessCounter = 15;
 var wrongGuessCounter = 0;
 var winCounter = 0;
+var lossCounter = 0;
 var blanks = 0;
 
 
@@ -40,24 +41,26 @@ var lettersInRandomWord = [];
 
 //HTML Variables
 var wordElement = document.getElementById('word');
-var letterCountElement = document.getElementById("guess-counter")
-var lettersGuessedElement = document.getElementById("guesses")
-
+var letterCountElement = document.getElementById("guess-counter");
+var lettersGuessedElement = document.getElementById("guesses");
+var winElement = document.getElementById("wins-counter");
+var lossElement = document.getElementById("loss-counter");
 
 function start() {
     //Game counter 
     guessCounter = 15;
     //Random Word
     randomWord = characterNames[Math.floor(Math.random() * characterNames.length)];
-    lettersInRandomWord = randomWord.split("");
+    lettersInRandomWord = randomWord.split(" ").join("");
+    console.log(lettersInRandomWord)
     blanks = lettersInRandomWord.length;
 
     //Function to render word blanks
         answerblanks = []
-    for (let i = 0; i < randomWord.length; i++) {
+    for (let i = 0; i < lettersInRandomWord.length; i++) {
         answerBlanks[i] = "_";
     }
-    console.log(randomWord);
+    
     //guess start empty
     wrongGuess = [];
     //renders html 
@@ -68,33 +71,62 @@ function start() {
 start()
 
 function guessCheck(letter) {
-    guessCounter--;
+    
 
     letterInRandomWord = false;
 
     //if letter is in word replace letter into word
     for (var i = 0; i < blanks; i++) {
-        if (randomWord[i] === letter) {
+        if (lettersInRandomWord[i] === letter) {
             letterInRandomWord = true;
         }
     }
 
     if (letterInRandomWord) {
         for (var j = 0; j < blanks; j++) {
-            if (randomWord[j] === letter) {
+            if (lettersInRandomWord[j] === letter) {
                 answerBlanks[j] = letter;
-                wordElement.innerHTML = answerBlanks;
+                wordElement.innerHTML = answerBlanks.join(" ");
                 console.log("correct: " + answerBlanks)
             }
         }
 
     }
+
+   
     //if letter is not in the word
 
   else {
-        guessCounter--;
+    guessCounter--;
         wrongGuess.push(letter);
         console.log("wrong: " + letter)
+        guesses.innerHTML = wrongGuess;
+    }
+}
+
+function afterguess(){
+    console.log("WinCount: " + winCounter + " | LossCount: " + lossCounter + " | NumGuesses: " + guessCounter);
+
+    //update HTML
+    wordElement.innerHTML = answerBlanks.join(" ");
+    //lettersGuessedElement.innerHTML = wrongGuess.push(letter);
+    letterCountElement.innerHTML = guessCounter;
+
+    //If user wins
+    if(lettersInRandomWord === blanks){
+        winCounter++;
+        alert("You Win!");
+        //html & restart
+        winElement.innerHTML = winCounter;
+        start()
+    }
+
+    else if (guessCounter === 0){
+        lossCounter++;
+        alert("You Lose!")
+        //html & restart
+        lossElement.innerHTML = lossCounter;
+        start()
     }
 }
 
@@ -103,37 +135,14 @@ function guessCheck(letter) {
 document.onkeyup = function (event) {
 
     var chosenLetter = event.key.toLowerCase();
-    console.log(chosenLetter)
-    guesses.innerHTML = chosenLetter
+    console.log(chosenLetter);
+    
 
-    guessCheck(chosenLetter)
-
+    guessCheck(chosenLetter);
+    afterguess();
 
 }
-//         //Win or Lose
-//         function checkWin(){
-//             if(correctGuess.indexOf(_)=== -1){
-//                 alert('You Won!')
-//             } 
-//             else if (counter === 0 ){
-//                 alert ('YOU LOST!');}
-//         }
 
-
-//    // if (chosenLetter === answer[x]) {
-//        // for (var x = 0; x < randomWord.length; x++){
-//          //   if (randomWord[x] === chosenLetter){
-//            //     answer[x] = chosenLetter;
-//       //      }
-//     //    }
-//   //  }
-
-//     //else(counter <= 0 ); {
-
-//         //location.reload(true)
-//    // 
-
-//     }
 
 
 //Display the following on the page:
